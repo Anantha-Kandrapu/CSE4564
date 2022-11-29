@@ -94,7 +94,7 @@ public class RightPanel extends JPanel implements Observable {
         Chain cChain = new CompositionChain();
         iChain.setChainNext(cChain);
         cChain.setChainNext(aChain);
-        int response = 2;
+        int response = 1;
         iChain.createArrow(response, b1, b2);
         updateRightPanel();
     }

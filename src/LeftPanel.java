@@ -33,7 +33,7 @@ public class LeftPanel extends JPanel implements Observer {
         subLeftPanels.clear();
 
         for (Box each_box : boxes) {
-            SubLeftPanel codePanel = new SubLeftPanel(6, 45);
+            SubLeftPanel codePanel = new SubLeftPanel().setSubLeftPanelCols(45).setSubLeftPanelRows(5);
             // use builder pattern
             codePanel.setClassNameText(each_box.className);
             codePanel.setBox(each_box);

@@ -6,11 +6,21 @@ public class SubLeftPanel extends JTextArea {
     String classNameText;
     ArrayList<String> relationsText;
     Box box;
+    int rows, cols;
 
-    public SubLeftPanel(int rows, int cols) {
-        super(rows, cols);
+    public SubLeftPanel() {
         setLineWrap(true);
         relationsText = new ArrayList<>();
+    }
+
+    public SubLeftPanel setSubLeftPanelRows(int rows) {
+        super.setRows(rows);
+        return this;
+    }
+
+    public SubLeftPanel setSubLeftPanelCols(int cols) {
+        super.setColumns(cols);
+        return this;
     }
 
     public String getRelationsText() {
@@ -45,6 +55,15 @@ public class SubLeftPanel extends JTextArea {
 
     public void setBox(Box box) {
         this.box = box;
+    }
+
+    @Override
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
     }
 
 }
