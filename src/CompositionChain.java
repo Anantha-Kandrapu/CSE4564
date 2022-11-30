@@ -13,7 +13,7 @@ public class CompositionChain implements Chain {
             System.out.println("Generating Composition Arrow");
 
             Arrow arrow = new CompostionDecoration(new JustLine());
-            RightPanel.getRelationShips().add(
+            RightPanel.relationShips.add(
                     new RelationShip().setBox1(b1).setBox2(b2).setType("Composition").setArrow(arrow));
         } else {
             nextInChain.createArrow(response, b1, b2);

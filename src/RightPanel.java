@@ -2,15 +2,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.event.MouseInputAdapter;
+
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class RightPanel extends JPanel implements Observable {
 
     public static RightPanel rightPanel;
-    private static ArrayList<Box> boxes;
-    private static ArrayList<Box> mouseTracker;
-    private static ArrayList<RelationShip> relationShips;
+    public static ArrayList<Box> boxes;
+    public static ArrayList<Box> mouseTracker;
+    public static ArrayList<RelationShip> relationShips;
 
     public static ArrayList<Box> getBoxes() {
         return boxes;
@@ -82,7 +84,8 @@ public class RightPanel extends JPanel implements Observable {
         popup.add(button1);
         popup.add(button2);
         popup.add(button3);
-        String[] options = new String[] { "Inheritance", "Composition", "Association" };
+        String[] options = new String[] { "Inheritance", "Composition", "Association"
+        };
         response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
         null, options, options[0]);
@@ -92,26 +95,54 @@ public class RightPanel extends JPanel implements Observable {
         Chain cChain = new CompositionChain();
         iChain.setChainNext(cChain);
         cChain.setChainNext(aChain);
-        
+
         iChain.createArrow(response, b1, b2);
         updateRightPanel();
     }
 
+    public void createRelations(int i, int j, int response) {
+        Box b1 = boxes.get(i);
+        Box b2 = boxes.get(j);
+        Chain iChain = new InheritanceChain();
+        Chain aChain = new AssociationChain();
+        Chain cChain = new CompositionChain();
+        iChain.setChainNext(cChain);
+        cChain.setChainNext(aChain);
+        iChain.createArrow(response, b1, b2);
+    }
+
     public void updateRightPanel() {
 
-        removeAll();
+        rightPanel.removeAll();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
         }
-        
+
         for (int i = 0; i < relationShips.size(); ++i) {
             Box b1 = relationShips.get(i).getBox1();
             Box b2 = relationShips.get(i).getBox2();
             Arrow arrow = relationShips.get(i).arrow;
             arrow.drawLine(b1.getX(), b1.getY(), b2.getX(), b2.getY());
         }
-        sendUpdate();
+
+        rightPanel.sendUpdate();
+    }
+
+    public String encode() {
+
+        String encodedBoxes = "";
+        ArrayList<Box> boxes = RightPanel.getBoxes();
+        for (int i = 0; i < boxes.size(); ++i) {
+            encodedBoxes += System.identityHashCode(boxes.get(i)) + "," + boxes.get(i).toString();
+        }
+
+        String encodedRelations = "RELATIONSHIPS:\n";
+        for (int i = 0; i < relationShips.size(); ++i) {
+            encodedRelations += relationShips.get(i);
+        }
+        return encodedBoxes + encodedRelations;
+
     }
 
     @Override

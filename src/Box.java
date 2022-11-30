@@ -11,7 +11,26 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
 
    private int x, y;
    boolean boxCreated = false;
-   String className = "noClassName";
+   String className;
+
+   public Box(int x, int y, String className) {
+      this.className = className;
+      addMouseMotionListener(this);
+      addMouseListener(this);
+      this.setLayout(new GridBagLayout());
+      this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      this.x = x;
+      this.y = y;
+      this.setLocation(x, y);
+      JTextArea ta = new JTextArea();
+      this.setSize(200, 40);
+      ta.setSize(100, 30);
+      ta.setBackground(Color.YELLOW);
+      ta.setText(className);
+      this.add(ta);
+      boxCreated = true;
+      this.setBackground(Color.RED);
+   }
 
    public Box(int x, int y) {
       className = JOptionPane.showInputDialog("Class Name");
@@ -34,8 +53,6 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
          this.add(ta);
          boxCreated = true;
          this.setBackground(Color.RED);
-         this.revalidate();
-         this.repaint();
       }
    }
 
@@ -55,15 +72,16 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
    }
 
    @Override
-   public void mousePressed(MouseEvent e) {
+   public String toString() {
+      return x + "," + y + "," + className + "\n";
+   }
 
+   @Override
+   public void mousePressed(MouseEvent e) {
    }
 
    @Override
    public void mouseReleased(MouseEvent e) {
-      // this.x += e.getX();
-      // this.y += e.getY();
-      // RightPanel.rightPanel.updateRightPanel();
    }
 
    @Override
@@ -110,7 +128,4 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       return className;
    }
 
-   public void setClassName(String className) {
-      this.className = className;
-   }
 }
