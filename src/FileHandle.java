@@ -56,7 +56,7 @@ public class FileHandle {
                     int i = map.get(splitString[1]);
                     int j = map.get(splitString[2]);
                     // System.out.println(i + " : " + j);
-                    if (relationType.contains("Associate")) {
+                    if (relationType.contains("Associat")) {
                         RightPanel.rightPanel.createRelations(i, j, 2);
                     } else if (relationType.contains("Inherit")) {
                         RightPanel.rightPanel.createRelations(i, j, 0);
