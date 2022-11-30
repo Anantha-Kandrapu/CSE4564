@@ -1,10 +1,12 @@
+import java.io.File;
+
 import javax.swing.*;
 
 public class Main extends JFrame {
 
     public static void main(String[] args) {
         JMenu file, help;
-        JMenuItem New, save, load, mem1, mem2, mem3, mem4, mem5, mem6;
+        JMenuItem New, save, load, about;
         JFrame frame = new JFrame("SplitPaneFrame");
         JMenuBar mb = new JMenuBar();
         file = new JMenu("File");
@@ -12,26 +14,48 @@ public class Main extends JFrame {
         New = new JMenuItem("New");
         save = new JMenuItem("Save");
         load = new JMenuItem("Load");
-        mem1 = new JMenuItem("Ananth");
-        mem2 = new JMenuItem("Danish");
-        mem3 = new JMenuItem("Paromita");
-        mem4 = new JMenuItem("Loka");
-        mem5 = new JMenuItem("mem5");
-        mem6 = new JMenuItem("mem6");
-        help.add(mem1);
-        help.add(mem2);
-        help.add(mem3);
-        help.add(mem4);
-        help.add(mem5);
-        help.add(mem6);
+
+        about = new JMenuItem("About");
+        about.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JOptionPane.showMessageDialog(frame, "                    Team: \n Anantha Ramayya Kandrapu  " +
+                        "\n Paromita Roy \n Mohammad Danish Khan \n Shivanjay Wagh \n Pradeep Nagisetti \n " +
+                        "Loka kalyan Balla");
+            }
+        });
         file.add(New);
         file.add(save);
         file.add(load);
+        help.add(about);
         mb.add(file);
         mb.add(help);
         LeftPanel lp = new LeftPanel();
         RightPanel.getRightPanel();
         RightPanel.rightPanel.addSubscriber(lp);
+        save.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // String fileName = "f";
+                String fileName = JOptionPane.showInputDialog(frame,
+                        "Please Enter FileName?", null);
+                String fileContent = RightPanel.rightPanel.encode();
+                FileHandle fileHandle = new FileHandle(fileName);
+                fileHandle.write(fileContent);
+            }
+        });
+
+        load.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // String fileName = "f";
+                String fileName = JOptionPane.showInputDialog(frame,
+                
+                        "Please Enter FileName?", null);
+                FileHandle fileHandle = new FileHandle(fileName);
+                fileHandle.read();
+            }
+        });
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
         split.setDividerLocation(500);
         frame.getContentPane().add(split);

@@ -10,9 +10,9 @@ public class AssociationChain implements Chain {
     @Override
     public void createArrow(int response, Box b1, Box b2) {
         System.out.println("Generating Association Arrow");
-        if (response != -1) {
+        if (response == 2) {
             Arrow arrow = new AssociationDecoration(new JustLine());
-            RightPanel.getRelationShips().add(
+            RightPanel.relationShips.add(
                     new RelationShip().setBox1(b1).setBox2(b2).setType("Association").setArrow(arrow));
         } else {
             System.out.println("No relation Ship Selected");

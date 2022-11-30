@@ -1,6 +1,6 @@
 public class RelationShip {
-    String type;
 
+    String type;
     Box box1;
     Box box2;
     Arrow arrow;
@@ -25,6 +25,12 @@ public class RelationShip {
 
     public Box getBox2() {
         return box2;
+    }
+
+    @Override
+    public String toString() {
+        return type + "," + System.identityHashCode(box1) + "," + System.identityHashCode(box2)
+                + "\n";
     }
 
     public RelationShip setBox2(Box box2) {

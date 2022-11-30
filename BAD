@@ -1,0 +1,9 @@
+BOXES:
+1233431371:x=298,y=229,boxCreated=true,className=erjrfo
+1910654920:x=285,y=466,boxCreated=true,className=343nflkndf;
+939975549:x=561,y=346,boxCreated=true,className=ak;j3o49
+RELATIONSHIPS:
+type=Association,box1=1910654920,box2=1233431371
+type=Association,box1=1910654920,box2=1233431371
+type=Composition,box1=939975549,box2=1233431371
+type=Inheritance,box1=1910654920,box2=939975549
