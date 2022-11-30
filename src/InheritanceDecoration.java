@@ -26,30 +26,4 @@ public class InheritanceDecoration extends JustLineDecorator {
         g.drawPolygon(ix, iy, 3);
         g.dispose();
     }
-
-    // @Override
-    // public void paint(Graphics g) {
-    // super.paint(g);
-    // // setBackground(Color.CYAN);
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // setForeground(Color.BLACK);
-    // g.drawPolygon(ix, iy, 3);
-    // }
-
 }

@@ -100,8 +100,6 @@ public class RightPanel extends JPanel implements Observable {
     public void updateRightPanel() {
 
         removeAll();
-        revalidate();
-        repaint();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
