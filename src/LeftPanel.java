@@ -33,7 +33,7 @@ public class LeftPanel extends JPanel implements Observer {
         subLeftPanels.clear();
 
         for (Box each_box : boxes) {
-            SubLeftPanel codePanel = new SubLeftPanel().setSubLeftPanelCols(45).setSubLeftPanelRows(5);
+            SubLeftPanel codePanel = new SubLeftPanel(6, 45);
             // use builder pattern
             codePanel.setClassNameText(each_box.className);
             codePanel.setBox(each_box);
@@ -46,13 +46,13 @@ public class LeftPanel extends JPanel implements Observer {
             SubLeftPanel foundPanel = findSubLeftPanel(relationShip.getBox1());
             if (foundPanel != null) {
                 if (relationShip.getType() == "Association") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setAssociationText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 } else if (relationShip.getType() == "Inheritance") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setInheritanceText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 } else if (relationShip.getType() == "Composition") {
-                    foundPanel.setRelationsText(relationShip.getBox2().getClassName());
+                    foundPanel.setCompositionText(relationShip.getBox2().getClassName());
                     foundPanel.setCodeText();
                 }
             }
