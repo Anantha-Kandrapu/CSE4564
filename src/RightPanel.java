@@ -20,8 +20,6 @@ public class RightPanel extends JPanel implements Observable {
         return relationShips;
     }
 
-    static int response = -1;
-
     private RightPanel() {
     }
 
@@ -73,28 +71,28 @@ public class RightPanel extends JPanel implements Observable {
     public void handleRelations() {
         Box b1 = mouseTracker.get(0);
         Box b2 = mouseTracker.get(1);
-        // JOptionPane popup = new JOptionPane();
+        int response = 0;
+        JOptionPane popup = new JOptionPane();
 
-        // JRadioButton nicSelect = new JRadioButton("What is the relationship");
-        // JRadioButton button1 = new JRadioButton("Inheritance");
-        // JRadioButton button2 = new JRadioButton("Composition");
-        // JRadioButton button3 = new JRadioButton("Association");
-        // popup.add(nicSelect);
-        // popup.add(button1);
-        // popup.add(button2);
-        // popup.add(button3);
-        // String[] options = new String[] { "Inheritance", "Composition", "Association"
-        // };
-        // response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
-        // JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-        // null, options, options[0]);
+        JRadioButton nicSelect = new JRadioButton("What is the relationship");
+        JRadioButton button1 = new JRadioButton("Inheritance");
+        JRadioButton button2 = new JRadioButton("Composition");
+        JRadioButton button3 = new JRadioButton("Association");
+        popup.add(nicSelect);
+        popup.add(button1);
+        popup.add(button2);
+        popup.add(button3);
+        String[] options = new String[] { "Inheritance", "Composition", "Association" };
+        response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
+        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+        null, options, options[0]);
 
         Chain iChain = new InheritanceChain();
         Chain aChain = new AssociationChain();
         Chain cChain = new CompositionChain();
         iChain.setChainNext(cChain);
         cChain.setChainNext(aChain);
-        int response = 1;
+        
         iChain.createArrow(response, b1, b2);
         updateRightPanel();
     }
@@ -102,6 +100,8 @@ public class RightPanel extends JPanel implements Observable {
     public void updateRightPanel() {
 
         removeAll();
+        revalidate();
+        repaint();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
