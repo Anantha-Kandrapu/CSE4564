@@ -64,8 +64,8 @@ public class LeftPanel extends JPanel implements Observer {
             add(subLeftPanel);
         }
 
-        revalidate();
-        repaint();
+        // revalidate();
+        // repaint();
     }
 
     public SubLeftPanel findSubLeftPanel(Box box) {

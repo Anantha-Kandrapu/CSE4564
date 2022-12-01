@@ -87,8 +87,8 @@ public class RightPanel extends JPanel implements Observable {
         String[] options = new String[] { "Inheritance", "Composition", "Association"
         };
         response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-        null, options, options[0]);
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
 
         Chain iChain = new InheritanceChain();
         Chain aChain = new AssociationChain();
@@ -114,6 +114,7 @@ public class RightPanel extends JPanel implements Observable {
     public void updateRightPanel() {
 
         rightPanel.removeAll();
+        // rightPanel.repaint();
         System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
