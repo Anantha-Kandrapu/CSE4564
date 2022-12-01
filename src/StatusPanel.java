@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.*;
 
 public class StatusPanel extends JTextArea implements Observer {
 
@@ -9,6 +8,9 @@ public class StatusPanel extends JTextArea implements Observer {
     int prevRelationLength = 0;
 
     public StatusPanel() {
+        Font font = new Font("Segoe Script", Font.BOLD, 20);
+        setFont(font);
+        setForeground(Color.BLUE);
     }
 
     @Override
