@@ -56,6 +56,7 @@ public class Main extends JFrame {
                 fileHandle.read();
             }
         });
+        
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
         split.setDividerLocation(500);
         frame.getContentPane().add(split);

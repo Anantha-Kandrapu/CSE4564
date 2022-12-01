@@ -11,6 +11,7 @@ public class AssociationDecoration extends JustLineDecorator {
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
+        RightPanel.rightPanel.repaint();
         Graphics g = RightPanel.rightPanel.getGraphics();
         super.drawLine(x1, y1, x2, y2);
         g.drawLine(x2,y2,x2-10,y2-10);

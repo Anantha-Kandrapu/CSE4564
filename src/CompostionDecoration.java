@@ -7,16 +7,43 @@ public class CompostionDecoration extends JustLineDecorator {
         super(arrow);
     }
 
-
     public void drawLine(int x1, int y1, int x2, int y2) {
         Graphics2D g2d = (Graphics2D) RightPanel.rightPanel.getGraphics();
-        super.drawLine(x1-10, y1+15, x2, y2+15);
+        RightPanel.rightPanel.repaint();
+        super.drawLine(x1, y1, x2, y2);
+        // super.drawLine(x1-10, y1+15, x2, y2+15);
         // for (int i = 0; i < 4; ++i) {
         // System.out.println("X : " + ix[i] + " Y :" + iy[i]);
         // }
 
+        double d = 10;
+        double h = 15;
+        int dx = x2 - x1, dy = y2 - y1;
+        double D = Math.sqrt(dx * dx + dy * dy);
+        double t = h / D;
+        double t1 = 2 * h / D;
+
+        double xt = (1 - t) * x2 + t * x1;
+        double yt = (1 - t) * y2 + t * y1;
+        double m2 = (x1 - x2) / (y2 - y1);
+
+        double sqrt = Math.sqrt(d * d / (m2 * m2 + 1));
+        double y3 = m2 * sqrt + yt;
+        double x3 = xt + sqrt;
+
+        double y4 = yt - m2 * sqrt;
+        double x4 = xt - sqrt;
+
+        double x5 = (1 - t1) * x2 + t1 * x1;
+        double y5 = (1 - t1) * y2 + t1 * y1;
+
+        int[] xPoints = { x2, (int) x3, (int) x5, (int) x4 };
+        int[] yPoints = { y2, (int) y3, (int) y5, (int) y4 };
+
         g2d.setColor(Color.BLACK);
-        g2d.drawRect(x1-15, y1 + 15, 15, 15);
-        g2d.fillRect(x1-15, y1 + 15, 15, 15);
+        g2d.fillPolygon(xPoints, yPoints, 4);
+        // g2d.setColor(Color.BLACK);
+        // g2d.drawRect(x1-15, y1 + 15, 15, 15);
+        // g2d.fillRect(x1-15, y1 + 15, 15, 15);
     }
 }
