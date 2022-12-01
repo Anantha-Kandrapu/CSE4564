@@ -1,9 +1,16 @@
 import java.util.HashMap;
-import java.io.File; // Import the File class
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException; // Import the IOException class to handle errors
+import java.io.IOException;
 import java.util.Scanner;
+
+/*
+ * This class is responsible for the save and load feature. 
+ * The save feature asks the user to input a file name to save the file locally.
+ * The load feature asks the user to input an existing file name, and renders the
+ * code and diagram onto the screen.
+ */
 
 public class FileHandle {
     String fileName;
@@ -11,6 +18,8 @@ public class FileHandle {
     public FileHandle(String fileName) {
         this.fileName = fileName;
     }
+
+    // Writes the contents into a file.
 
     public void write(String input) {
         try {
@@ -23,6 +32,8 @@ public class FileHandle {
             e.printStackTrace();
         }
     }
+
+    // Loads the content from the specified file.
 
     public void read() {
         int flag = 0;
@@ -40,6 +51,7 @@ public class FileHandle {
                     flag = 1;
                     continue;
                 }
+
                 if (flag == 0) {
                     String[] splitString = data.split(",", 4);
                     map.put(splitString[0], boxNumber);
@@ -50,12 +62,10 @@ public class FileHandle {
                     RightPanel.boxes.add(temp);
                 } else {
                     System.out.println(data);
-
                     String[] splitString = data.split(",", 3);
                     String relationType = splitString[0];
                     int i = map.get(splitString[1]);
                     int j = map.get(splitString[2]);
-                    // System.out.println(i + " : " + j);
                     if (relationType.contains("Associat")) {
                         RightPanel.rightPanel.createRelations(i, j, 2);
                     } else if (relationType.contains("Inherit")) {
@@ -64,8 +74,8 @@ public class FileHandle {
                         RightPanel.rightPanel.createRelations(i, j, 1);
                     }
                 }
-
             }
+
             myReader.close();
             RightPanel.rightPanel.updateRightPanel();
         } catch (FileNotFoundException e) {
@@ -74,6 +84,8 @@ public class FileHandle {
         }
     }
 
+    // Creates a new file to save the content.
+    
     public void create() {
         try {
             File myObj = new File(fileName);
@@ -87,4 +99,5 @@ public class FileHandle {
             e.printStackTrace();
         }
     }
+
 }

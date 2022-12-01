@@ -1,6 +1,11 @@
 import java.awt.Graphics2D;
 import java.awt.Color;
 
+/**
+ * This class implements the Decorator Pattern. It adds the arrowhead for inheritance
+ * over the basic line.
+ */
+
 public class InheritanceDecoration extends JustLineDecorator {
 
     int[] ix = new int[3];
@@ -8,9 +13,6 @@ public class InheritanceDecoration extends JustLineDecorator {
 
     public InheritanceDecoration(Arrow arrow) {
         super(arrow);
-        // setLayout(null);
-        // setBounds(arrow.getBoundX(), arrow.getBoundY(), arrow.getBoundW()+20,
-        // arrow.getBoundH()+20);
     }
 
     @Override
@@ -41,13 +43,6 @@ public class InheritanceDecoration extends JustLineDecorator {
         g2d.fillPolygon(xpoints, ypoints, 3);
         g2d.setColor(Color.BLUE);
         g2d.drawPolygon(xpoints, ypoints, 3);
-        // ix[0] = x2 + 10;
-        // iy[0] = y2;
-        // ix[1] = x2;
-        // iy[1] = y2 + 10;
-        // ix[2] = x2;
-        // iy[2] = y2 - 10;
-        // g.drawPolygon(ix, iy, 3);
-        // g.dispose();
     }
+
 }

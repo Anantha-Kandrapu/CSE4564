@@ -1,31 +1,46 @@
 import javax.swing.*;
 
+/**
+ * @author Anantha Kandrapu
+ * @author Mohammad Danish Khan
+ * @author Paromita Roy
+ * @author Loka Kalyan Balla
+ * @author Shivanjay Wagh
+ * @author Venkata Sai Pradeep Nagisetti
+ * 
+ * This is the driver code that initialises the main frame and creates the layout. 
+ * It contains a menu bar consisting of a save and load feature, a status box, a right 
+ * panel for the diagram, and a left panel for the code.
+ * 
+ */
+
 public class Main extends JFrame {
 
     public static void main(String[] args) {
 
         JMenu file, help;
-        JMenuItem New, save, load, about;
-        JFrame frame = new JFrame("SplitPaneFrame");
+        JMenuItem newButton, save, load, about;
+
+        JFrame frame = new JFrame("Final Project 564");
+
         JMenuBar mb = new JMenuBar();
         file = new JMenu("File");
         help = new JMenu("Help");
-        New = new JMenuItem("New");
+        newButton = new JMenuItem("New");
         save = new JMenuItem("Save");
         load = new JMenuItem("Load");
-
         about = new JMenuItem("About");
         about.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JOptionPane.showMessageDialog(frame, "                    Team: \n Anantha Ramayya Kandrapu  " +
-                        "\n Paromita Roy \n Mohammad Danish Khan \n Shivanjay Wagh \n Pradeep Nagisetti \n " +
+                        "\n Paromita Roy \n Mohammad Danish Khan \n Shivanjay Wagh \n Venkata Sai Pradeep Nagisetti \n " +
                         "Loka Kalyan Balla");
             }
         });
 
         StatusPanel statusPanel = new StatusPanel();
-        file.add(New);
+        file.add(newButton);
         file.add(save);
         file.add(load);
         help.add(about);
@@ -42,7 +57,7 @@ public class Main extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String fileName = JOptionPane.showInputDialog(frame,
-                        "Please Enter FileName?", null);
+                        "Please enter the filename.", null);
                 String fileContent = RightPanel.rightPanel.encode();
                 FileHandle fileHandle = new FileHandle(fileName);
                 fileHandle.write(fileContent);
@@ -53,8 +68,7 @@ public class Main extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String fileName = JOptionPane.showInputDialog(frame,
-
-                        "Please Enter FileName?", null);
+                        "Please enter the filename.", null);
                 FileHandle fileHandle = new FileHandle(fileName);
                 fileHandle.read();
             }

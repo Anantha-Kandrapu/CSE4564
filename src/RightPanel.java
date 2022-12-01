@@ -2,10 +2,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.event.MouseInputAdapter;
-
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+/**
+ * This class is the right panel which allows the user to click on the screen and
+ * create class boxes, and link them based on the relationship they choose. It is an observable
+ * as the LeftPanel observes it and changes the code accordingly.
+ */
 
 public class RightPanel extends JPanel implements Observable {
 
@@ -28,7 +32,6 @@ public class RightPanel extends JPanel implements Observable {
     JPanel jPanel;
 
     public static void getRightPanel() {
-
         if (rightPanel == null) {
             rightPanel = new RightPanel();
             boxes = new ArrayList<>();
@@ -50,7 +53,6 @@ public class RightPanel extends JPanel implements Observable {
         Box newBox = new Box(x, y);
         if (newBox.getBoxCreated()) {
             boxes.add(newBox);
-            // sendUpdate();
             updateRightPanel();
         }
     }
@@ -61,31 +63,39 @@ public class RightPanel extends JPanel implements Observable {
         System.out.println();
     }
 
+    // Tracks the number of clicks on classes.
+
     public void boxClickTracker(Box box) {
         mouseTracker.add(box);
         if (mouseTracker.size() == 2) {
             handleRelations();
             mouseTracker.clear();
         }
-
     }
+
+    /* Asks users to choose between the three given relationships by means of a popup.
+     * It stores the response and sends it to the Chain of Responsibility pattern.
+     */
 
     public void handleRelations() {
         Box b1 = mouseTracker.get(0);
         Box b2 = mouseTracker.get(1);
         int response = 0;
-        JOptionPane popup = new JOptionPane();
 
-        JRadioButton nicSelect = new JRadioButton("What is the relationship");
+        JOptionPane popup = new JOptionPane();
+        JRadioButton rel = new JRadioButton("What is the relationship");
         JRadioButton button1 = new JRadioButton("Inheritance");
         JRadioButton button2 = new JRadioButton("Composition");
         JRadioButton button3 = new JRadioButton("Association");
-        popup.add(nicSelect);
+        popup.add(rel);
         popup.add(button1);
         popup.add(button2);
         popup.add(button3);
-        String[] options = new String[] { "Inheritance", "Composition", "Association"
-        };
+
+        String[] options = new String[] { "Inheritance", 
+                                            "Composition", 
+                                            "Association"
+                                        };
         response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
@@ -112,10 +122,7 @@ public class RightPanel extends JPanel implements Observable {
     }
 
     public void updateRightPanel() {
-
         rightPanel.removeAll();
-        // rightPanel.repaint();
-        System.out.println("rePainting started");
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
         }
@@ -131,11 +138,11 @@ public class RightPanel extends JPanel implements Observable {
     }
 
     public String encode() {
-
         String encodedBoxes = "";
         ArrayList<Box> boxes = RightPanel.getBoxes();
         for (int i = 0; i < boxes.size(); ++i) {
-            encodedBoxes += System.identityHashCode(boxes.get(i)) + "," + boxes.get(i).toString();
+            encodedBoxes += System.identityHashCode(boxes.get(i)) 
+                            + "," + boxes.get(i).toString();
         }
 
         String encodedRelations = "RELATIONSHIPS:\n";
@@ -143,7 +150,6 @@ public class RightPanel extends JPanel implements Observable {
             encodedRelations += relationShips.get(i);
         }
         return encodedBoxes + encodedRelations;
-
     }
 
     @Override
@@ -163,4 +169,5 @@ public class RightPanel extends JPanel implements Observable {
             observer.update(RightPanel.boxes, RightPanel.relationShips);
         }
     }
+
 }

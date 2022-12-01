@@ -1,14 +1,17 @@
 import java.util.ArrayList;
-
 import javax.swing.JTextArea;
 
+/**
+ * This class creates the LeftPanel code as a String.
+ */
+
 public class SubLeftPanel extends JTextArea {
+
     String classNameText;
     ArrayList<String> association;
     Box box;
     ArrayList<String> inheritance;
     ArrayList<String> composition;
-
 
     public SubLeftPanel(int rows, int cols) {
         super(rows, cols);
@@ -25,8 +28,9 @@ public class SubLeftPanel extends JTextArea {
         }
         return relations;
     }
+
     public String getInheritanceText() {
-    	if(inheritance.size()==0) return "";
+    	if(inheritance.size() == 0) return "";
         String relations = " extends ";
         for (String s : inheritance) {
             relations = relations + s ;
@@ -43,8 +47,9 @@ public class SubLeftPanel extends JTextArea {
     }
 
     public void setCodeText() {
-    	
-        String generatedString = "class " + classNameText + getInheritanceText() + " { \n" + getCompositionText() + getAssociationText() + "\n}";
+        String generatedString = "class " + classNameText + getInheritanceText() + 
+                                " { \n" + getCompositionText() 
+                                + getAssociationText() + "\n}";
         setText(generatedString);
     }
     
@@ -58,20 +63,19 @@ public class SubLeftPanel extends JTextArea {
     }
 
     public void setAssociationText(String relationsText) {
-        String assocaitoString = "\t method() {\n \t\t" + relationsText + "\n \t}";
-        this.association.add(assocaitoString);
+        String assocaitonString = "\t method() {\n \t\t" + relationsText + "\n \t}";
+        this.association.add(assocaitonString);
     }
     
     public void setInheritanceText(String relationsText) {
-        String inherittoString = relationsText;
-        this.inheritance.add(inherittoString);
+        String inheritanceString = relationsText;
+        this.inheritance.add(inheritanceString);
     }
     
     public void setCompositionText(String relationsText) {
-        String compositetoString = relationsText;
-        this.composition.add(compositetoString);
+        String compositionString = relationsText;
+        this.composition.add(compositionString);
     }
-    
 
     public Box getBox() {
         return box;
