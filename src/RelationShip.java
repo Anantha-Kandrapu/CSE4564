@@ -1,3 +1,8 @@
+/**
+ * This class figures out which boxes were clicked on to connect them based on their
+ * relationsip.
+ */
+
 public class RelationShip {
 
     String type;
@@ -35,7 +40,6 @@ public class RelationShip {
 
     public RelationShip setBox2(Box box2) {
         this.box2 = box2;
-
         return this;
     }
 

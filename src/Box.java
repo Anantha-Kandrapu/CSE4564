@@ -7,12 +7,20 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * This class takes care of creating boxes or classes. It gets the coordinates of where the 
+ * user clicked on the right panel, and draws a box at that location.
+ */
+
 public class Box extends JPanel implements MouseInputListener, MouseMotionListener {
 
    private int x, y;
    boolean boxCreated = false;
    String className;
 
+   /* This constructor gets the x and y coordinates of the mouse click.
+    * It sets the classname based on the users input.
+    */
    public Box(int x, int y, String className) {
       this.className = className;
       addMouseMotionListener(this);
@@ -31,6 +39,10 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       boxCreated = true;
       this.setBackground(Color.RED);
    }
+
+   /* This constructor displays a popup box requesting the user to input 
+    * a classname.
+    */
 
    public Box(int x, int y) {
       className = JOptionPane.showInputDialog("Class Name");
@@ -60,14 +72,12 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       return boxCreated;
    }
 
+   // Sets the X and Y coordinates.
    @Override
    public void mouseDragged(MouseEvent e) {
-      // System.out.println("HEY I");
       setX(e.getX() + this.x);
       setY(e.getY() + this.y);
       this.setLocation(this.x, this.y);
-      // System.out.println(e.getX() + " = " + e.getY());
-      // System.out.println(this.getX() + " = " + this.getY());
       RightPanel.rightPanel.updateRightPanel();
    }
 

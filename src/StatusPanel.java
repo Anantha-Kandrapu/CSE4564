@@ -2,13 +2,18 @@ import java.util.ArrayList;
 import javax.swing.JTextArea;
 import java.awt.*;
 
+/**
+ * This class implements the status panel feature. It displays what activity is 
+ * happening on the screen.
+ */
+
 public class StatusPanel extends JTextArea implements Observer {
 
     int prevBoxLength = 0;
     int prevRelationLength = 0;
 
     public StatusPanel() {
-        Font font = new Font("Segoe Script", Font.BOLD, 20);
+        Font font = new Font("Regular", Font.BOLD, 12);
         setFont(font);
         setForeground(Color.BLUE);
     }

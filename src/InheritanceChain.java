@@ -1,3 +1,8 @@
+/**
+ * This class takes part in the Chain of Responsibility Pattern. It generates the inheritance
+ * triangle arrowhead.
+ */
+
 public class InheritanceChain implements Chain {
 
     private Chain nextInChain;

@@ -1,3 +1,8 @@
+/**
+ * This class takes part in the Chain of Responsibility Pattern. It generates the association
+ * regular arrowhead.
+ */
+
 public class AssociationChain implements Chain {
 
     private Chain nextInChain;
@@ -13,9 +18,13 @@ public class AssociationChain implements Chain {
         if (response == 2) {
             Arrow arrow = new AssociationDecoration(new JustLine());
             RightPanel.relationShips.add(
-                    new RelationShip().setBox1(b1).setBox2(b2).setType("Association").setArrow(arrow));
+                    new RelationShip()
+                    .setBox1(b1).setBox2(b2)
+                    .setType("Association")
+                    .setArrow(arrow));
         } else {
-            System.out.println("No relation Ship Selected");
+            System.out.println("No relationship selected.");
         }
     }
+
 }

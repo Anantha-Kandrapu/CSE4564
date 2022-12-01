@@ -2,7 +2,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
 
+/**
+ * This class creates a left panel which holds all the code. It acts as an observer, 
+ * and observes the RightPanel for any changes in the UML diagram, and updates the
+ * code on the left accordingly.
+ */
+
 public class LeftPanel extends JPanel implements Observer {
+    
     String text_output = "";
     int len = 0;
     private ArrayList<SubLeftPanel> subLeftPanels;
@@ -10,31 +17,26 @@ public class LeftPanel extends JPanel implements Observer {
     ArrayList<RelationShip> relationShips;
 
     LeftPanel() {
-
         boxes = new ArrayList<>();
         subLeftPanels = new ArrayList<>();
         setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
-
     }
 
     @Override
     public void update(ArrayList<Box> boxes, ArrayList<RelationShip> relationShips) {
-
-        System.out.println("in update");
         this.boxes = boxes;
         this.relationShips = relationShips;
-        write_string();
-
+        writeString();
     }
 
-    public void write_string() {
-
+    // Creates the code to be displayed based on the diagram.
+    
+    public void writeString() {
         removeAll();
         subLeftPanels.clear();
 
         for (Box each_box : boxes) {
             SubLeftPanel codePanel = new SubLeftPanel(6, 45);
-            // use builder pattern
             codePanel.setClassNameText(each_box.className);
             codePanel.setBox(each_box);
             codePanel.setCodeText();
@@ -42,7 +44,6 @@ public class LeftPanel extends JPanel implements Observer {
         }
 
         for (RelationShip relationShip : relationShips) {
-
             SubLeftPanel foundPanel = findSubLeftPanel(relationShip.getBox1());
             if (foundPanel != null) {
                 if (relationShip.getType() == "Association") {
@@ -59,22 +60,18 @@ public class LeftPanel extends JPanel implements Observer {
 
         }
 
-        // System.out.println("LEnthll " + subLeftPanels.size());
         for (SubLeftPanel subLeftPanel : subLeftPanels) {
             add(subLeftPanel);
         }
-
-        // revalidate();
-        // repaint();
     }
 
     public SubLeftPanel findSubLeftPanel(Box box) {
         for (SubLeftPanel subLeftPanel : subLeftPanels) {
-
             if (box == subLeftPanel.box) {
                 return subLeftPanel;
             }
         }
         return null;
     }
+
 }
