@@ -1,3 +1,8 @@
+package Model;
+
+import Controller.*;
+import View.*;
+
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.event.MouseInputListener;
@@ -16,8 +21,7 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
 
    private int x, y;
    boolean boxCreated = false;
-   String className;
-
+   public String className;
    /* This constructor gets the x and y coordinates of the mouse click.
     * It sets the classname based on the users input.
     */

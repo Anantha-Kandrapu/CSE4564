@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.*;
+import View.*;
+
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;

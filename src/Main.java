@@ -1,6 +1,7 @@
+import View.*;
+import Model.*;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
+import Controller.*;
 
 
 /**
@@ -77,20 +78,28 @@ public class Main extends JFrame {
             }
         });
 
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
-        split.setDividerLocation(500);
-        frame.getContentPane().add(split);
-
+//        JScrollPane panelPane = new JScrollPane(lp);
+//        panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lp.removeAll();
+                lp.repaint();
+                statusPanel.selectAll();
+                statusPanel.replaceSelection(" ");
+                RightPanel.rightPanel.removeAll();
+                RightPanel.rightPanel.repaint();
+            }
+        });
+        JSplitPane hSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
+        hSplit.setDividerLocation(500);
+        JSplitPane vSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, hSplit, statusPanel);
+        vSplit.setResizeWeight(0.97);
+        frame.getContentPane().add(vSplit);
         frame.setJMenuBar(mb);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(2000, 670);
+        frame.setSize(2000, 700);
         frame.setVisible(true);
-        frame.setLayout(new BorderLayout());
-        frame.setSize(200, 200);
-        statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        frame.add(statusPanel, BorderLayout.SOUTH);
-        statusPanel.setPreferredSize(new Dimension(frame.getWidth(), 20));
-        statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
 
     }
 }

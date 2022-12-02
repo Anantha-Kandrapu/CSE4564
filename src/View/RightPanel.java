@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -17,6 +22,7 @@ public class RightPanel extends JPanel implements Observable {
     public static ArrayList<Box> boxes;
     public static ArrayList<Box> mouseTracker;
     public static ArrayList<RelationShip> relationShips;
+    static Blackboard b = Blackboard.getInstance();
 
     public static ArrayList<Box> getBoxes() {
         return boxes;
@@ -44,6 +50,7 @@ public class RightPanel extends JPanel implements Observable {
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
+                b.boxcoord(x, y);
                 rightPanel.addNewBox(x, y);
             }
         });
@@ -54,6 +61,7 @@ public class RightPanel extends JPanel implements Observable {
         if (newBox.getBoxCreated()) {
             boxes.add(newBox);
             updateRightPanel();
+            b.boxData(boxes);
         }
     }
 
@@ -73,7 +81,7 @@ public class RightPanel extends JPanel implements Observable {
         }
     }
 
-    /* Asks users to choose between the three given relationships by means of a popup.
+    /** Asks users to choose between the three given relationships by means of a popup.
      * It stores the response and sends it to the Chain of Responsibility pattern.
      */
 

@@ -1,6 +1,13 @@
+package Controller;
+
+import Model.*;
+import View.*;
+
 /*
  * This is part of the Chain of Responsibility Pattern.
  */
+
+import Model.Box;
 
 public interface Chain {
 
