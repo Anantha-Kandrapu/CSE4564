@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.*;
+import View.*;
+
 /**
  * This class takes part in the Chain of Responsibility Pattern. It generates the inheritance
  * triangle arrowhead.

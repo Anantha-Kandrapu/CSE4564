@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import java.awt.*;

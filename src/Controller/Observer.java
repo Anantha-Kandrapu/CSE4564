@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.*;
+import View.*;;
+
 import java.util.ArrayList;
 
 public interface Observer {

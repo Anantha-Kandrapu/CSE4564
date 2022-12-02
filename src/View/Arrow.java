@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 /**
  * This interface is part of the Decorator Pattern.
  */
