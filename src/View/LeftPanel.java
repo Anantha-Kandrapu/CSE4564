@@ -26,6 +26,7 @@ public class LeftPanel extends JPanel implements Observer {
         boxes = new ArrayList<>();
         subLeftPanels = new ArrayList<>();
         setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
+
     }
 
     @Override

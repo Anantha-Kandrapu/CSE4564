@@ -15,34 +15,36 @@ public class CompositionDecoration extends JustLineDecorator {
     public void drawLine(int x1, int y1, int x2, int y2) {
         Graphics2D g2d = (Graphics2D) RightPanel.rightPanel.getGraphics();
         super.drawLine(x1, y1, x2, y2);
-        double d = 10, height = 15;
-        int dx = x2 - x1, dy = y2 - y1;
-        double dist = Math.sqrt(dx * dx + dy * dy);
-        double t = height / dist;
-        double t1 = 2 * height / dist;
+        double x3, y3, x4, y4, xTemp, yTemp, x5, y5;
+        float polyheight = 15;
+        double dist = Math.sqrt((Math.pow((x2 - x1),2) + Math.pow((y2 - y1) , 2)));
+        float val = polyheight / (float)dist;
+        double valtemp = 2 * polyheight / (float)dist;
 
-        double xt = (1 - t) * x2 + t * x1;
-        double yt = (1 - t) * y2 + t * y1;
-        double m2 = 0.0;
+        xTemp = x2 * val  + x1 * (1 - val) ;
+        yTemp = y2 * val  + y1 * (1 - val) ;
+        double s = 0.0;
 
         try {
-            m2 = (x1 - x2) / (y2 - y1);
+            s = (x1 - x2) / (y2 - y1);
         }
         catch (ArithmeticException e){
             System.out.println("Compostiiton");
         }
-        double sqrt = Math.sqrt(d * d / (m2 * m2 + 1));
-        double y3 = m2 * sqrt + yt;
-        double x3 = xt + sqrt;
 
-        double y4 = yt - m2 * sqrt;
-        double x4 = xt - sqrt;
+        float polywidth = 20;
+        double root = Math.sqrt(polywidth * polywidth / (s * s + 1));
+        y3 = s * root + yTemp;
+        x3 = xTemp + root;
 
-        double x5 = (1 - t1) * x2 + t1 * x1;
-        double y5 = (1 - t1) * y2 + t1 * y1;
+        y4 = yTemp - s * root;
+        x4 = xTemp - root;
 
-        int[] xPoints = { x2, (int) x3, (int) x5, (int) x4 };
-        int[] yPoints = { y2, (int) y3, (int) y5, (int) y4 };
+        x5 = (1 - valtemp) * x1 + valtemp * x2;
+        y5 = (1 - valtemp) * y1 + valtemp * y2;
+
+        int[] xPoints = { x1, (int) x3, (int) x5, (int) x4 };
+        int[] yPoints = { y1, (int) y3, (int) y5, (int) y4 };
 
         g2d.setColor(Color.BLACK);
         g2d.fillPolygon(xPoints, yPoints, 4);

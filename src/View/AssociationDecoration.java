@@ -23,8 +23,23 @@ public class AssociationDecoration extends JustLineDecorator {
     public void drawLine(int x1, int y1, int x2, int y2) {
         Graphics g = RightPanel.rightPanel.getGraphics();
         super.drawLine(x1, y1, x2, y2);
-        g.drawLine(x2, y2, x2 - 10, y2 - 10);
-        g.drawLine(x2, y2, x2 + 10, y2 - 10);
+        if(y1<y2){
+            g.drawLine(x2, y2, x2 - 10, y2 - 10);
+            g.drawLine(x2, y2, x2 + 10, y2 - 10);
+        }
+        else if(x2 > x1 + 200)
+        {
+            g.drawLine(x2, y2, x2 - 10, y2 - 10);
+            g.drawLine(x2, y2, x2 - 10, y2 + 10);
+        }
+        else if(x2 + 200 < x1){
+            g.drawLine(x2, y2, x2 + 10, y2 - 10);
+            g.drawLine(x2, y2, x2 + 10, y2 + 10);
+        }
+        else {
+            g.drawLine(x2, y2, x2 - 10, y2 + 10);
+            g.drawLine(x2, y2, x2 + 10, y2 + 10);
+        }
         g.dispose();
     }
 

@@ -1,8 +1,6 @@
 import View.*;
 import Model.*;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
 import Controller.*;
 
 /**
@@ -78,7 +76,19 @@ public class Main extends JFrame {
                 fileHandle.read();
             }
         });
-
+//        JScrollPane panelPane = new JScrollPane(lp);
+//        panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lp.removeAll();
+                lp.repaint();
+                statusPanel.selectAll();
+                statusPanel.replaceSelection(" ");
+                RightPanel.rightPanel.removeAll();
+                RightPanel.rightPanel.repaint();
+            }
+        });
         JSplitPane hSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
         hSplit.setDividerLocation(500);
         JSplitPane vSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, hSplit, statusPanel);
