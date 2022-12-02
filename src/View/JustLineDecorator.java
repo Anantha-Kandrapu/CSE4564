@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import javax.swing.JPanel;
 
 /**

@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -73,7 +78,7 @@ public class RightPanel extends JPanel implements Observable {
         }
     }
 
-    /* Asks users to choose between the three given relationships by means of a popup.
+    /** Asks users to choose between the three given relationships by means of a popup.
      * It stores the response and sends it to the Chain of Responsibility pattern.
      */
 

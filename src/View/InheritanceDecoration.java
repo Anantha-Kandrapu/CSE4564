@@ -1,3 +1,8 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import java.awt.Graphics2D;
 import java.awt.Color;
 
@@ -19,16 +24,23 @@ public class InheritanceDecoration extends JustLineDecorator {
     public void drawLine(int x1, int y1, int x2, int y2) {
         Graphics2D g2d = (Graphics2D) RightPanel.rightPanel.getGraphics();
         super.drawLine(x1, y1, x2, y2);
-        double d = 10;
-        double h = 15;
-        int dx = x2 - x1, dy = y2 - y1;
-        double D = Math.sqrt(dx * dx + dy * dy);
-        double t = h / D;
+        double height = 18;
+        int xDiff = x2 - x1, yDiff = y2 - y1;
+        double dist = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+        double t = height / dist;
 
         double xt = (1 - t) * x2 + t * x1;
         double yt = (1 - t) * y2 + t * y1;
-        double m2 = (x1 - x2) / (y2 - y1);
+        double m2 = 0.0;
 
+        try {
+            m2 = (x1 - x2) / (y2 - y1);
+        }
+        catch (ArithmeticException e){
+            System.out.println("Inheritance");
+        }
+
+        double d = 13;
         double sqrt = Math.sqrt(d * d / (m2 * m2 + 1));
         double y3 = m2 * sqrt + yt;
         double x3 = xt + sqrt;

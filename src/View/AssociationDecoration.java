@@ -1,4 +1,9 @@
+package View;
+
 import java.awt.Graphics;
+
+import Controller.*;
+import Model.*;
 
 /**
  * This class implements the Decorator Pattern. It adds the arrowhead for association

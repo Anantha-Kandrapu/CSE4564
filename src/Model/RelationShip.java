@@ -1,3 +1,7 @@
+package Model;
+
+import View.*;
+
 /**
  * This class figures out which boxes were clicked on to connect them based on their
  * relationsip.
@@ -8,7 +12,7 @@ public class RelationShip {
     String type;
     Box box1;
     Box box2;
-    Arrow arrow;
+    public Arrow arrow;
 
     public String getType() {
         return type;
@@ -52,7 +56,7 @@ public class RelationShip {
         return this;
     }
 
-    RelationShip() {
+    public RelationShip() {
     }
 
 }

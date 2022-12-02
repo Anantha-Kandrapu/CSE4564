@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.*;
+import View.*;
+
 /**
  * This class takes part in the Chain of Responsibility Pattern. It generates the composition
  * filled-diamond arrowhead.
@@ -16,7 +21,7 @@ public class CompositionChain implements Chain {
     public void createArrow(int response, Box b1, Box b2) {
         if (response == 1) {
             System.out.println("Generating Composition Arrow");
-            Arrow arrow = new CompostionDecoration(new JustLine());
+            Arrow arrow = new CompositionDecoration(new JustLine());
             RightPanel.relationShips.add(
                     new RelationShip()
                     .setBox1(b1).setBox2(b2)

@@ -1,25 +1,36 @@
+package View;
+
+import Controller.*;
+import Model.*;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class CompostionDecoration extends JustLineDecorator {
+public class CompositionDecoration extends JustLineDecorator {
 
-    public CompostionDecoration(Arrow arrow) {
+    public CompositionDecoration(Arrow arrow) {
         super(arrow);
     }
 
     public void drawLine(int x1, int y1, int x2, int y2) {
         Graphics2D g2d = (Graphics2D) RightPanel.rightPanel.getGraphics();
         super.drawLine(x1, y1, x2, y2);
-        double d = 10, h = 15;
+        double d = 10, height = 15;
         int dx = x2 - x1, dy = y2 - y1;
-        double D = Math.sqrt(dx * dx + dy * dy);
-        double t = h / D;
-        double t1 = 2 * h / D;
+        double dist = Math.sqrt(dx * dx + dy * dy);
+        double t = height / dist;
+        double t1 = 2 * height / dist;
 
         double xt = (1 - t) * x2 + t * x1;
         double yt = (1 - t) * y2 + t * y1;
-        double m2 = (x1 - x2) / (y2 - y1);
+        double m2 = 0.0;
 
+        try {
+            m2 = (x1 - x2) / (y2 - y1);
+        }
+        catch (ArithmeticException e){
+            System.out.println("Compostiiton");
+        }
         double sqrt = Math.sqrt(d * d / (m2 * m2 + 1));
         double y3 = m2 * sqrt + yt;
         double x3 = xt + sqrt;

@@ -1,3 +1,10 @@
+package View;
+
+import Model.Box;
+
+import Controller.*;
+import Model.*;
+
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 
