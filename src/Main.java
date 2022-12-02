@@ -76,6 +76,7 @@ public class Main extends JFrame {
                 fileHandle.read();
             }
         });
+
 //        JScrollPane panelPane = new JScrollPane(lp);
 //        panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         newButton.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +99,6 @@ public class Main extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2000, 700);
         frame.setVisible(true);
-;
 
     }
 }
