@@ -44,7 +44,7 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       this.setBackground(Color.RED);
    }
 
-   /* This constructor displays a popup box requesting the user to input 
+   /** This constructor displays a popup box requesting the user to input
     * a classname.
     */
 
@@ -82,7 +82,7 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
       setX(e.getX() + this.x);
       setY(e.getY() + this.y);
       this.setLocation(this.x, this.y);
-      RightPanel.rightPanel.updateRightPanel();
+      RightPanel.rightPanel.updateBoxes();
    }
 
    @Override
@@ -96,6 +96,7 @@ public class Box extends JPanel implements MouseInputListener, MouseMotionListen
 
    @Override
    public void mouseReleased(MouseEvent e) {
+      RightPanel.rightPanel.updateRightPanel();
    }
 
    @Override

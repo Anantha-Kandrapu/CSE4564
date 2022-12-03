@@ -8,13 +8,30 @@ import javax.swing.JTextArea;
 import java.awt.*;
 
 /**
- * This class implements the status panel feature. It displays what activity is 
+ * This class implements the status panel feature. It displays what activity is
  * happening on the screen.
  */
 
 public class StatusPanel extends JTextArea implements Observer {
 
     int prevBoxLength = 0;
+
+    public int getPrevBoxLength() {
+        return prevBoxLength;
+    }
+
+    public void setPrevBoxLength(int prevBoxLength) {
+        this.prevBoxLength = prevBoxLength;
+    }
+
+    public void setPrevRelationLength(int prevRelationLength) {
+        this.prevRelationLength = prevRelationLength;
+    }
+
+    public int getPrevRelationLength() {
+        return prevRelationLength;
+    }
+
     int prevRelationLength = 0;
 
     public StatusPanel() {
@@ -37,6 +54,6 @@ public class StatusPanel extends JTextArea implements Observer {
             prevRelationLength = relationShip.size();
         }
         setText(update);
-    }
+}
 
 }

@@ -21,12 +21,14 @@ public class LeftPanel extends JPanel implements Observer {
     private ArrayList<SubLeftPanel> subLeftPanels;
     ArrayList<Model.Box> boxes;
     ArrayList<RelationShip> relationShips;
+    JScrollPane scrollPane;
 
     public LeftPanel() {
         boxes = new ArrayList<>();
         subLeftPanels = new ArrayList<>();
         setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
-
+        scrollPane = new JScrollPane();
+        add(scrollPane);
     }
 
     @Override
@@ -36,8 +38,9 @@ public class LeftPanel extends JPanel implements Observer {
         writeString();
     }
 
-    // Creates the code to be displayed based on the diagram.
-    
+    /**
+     * Creates the code to be displayed based on the diagram.
+    */
     public void writeString() {
         removeAll();
         subLeftPanels.clear();

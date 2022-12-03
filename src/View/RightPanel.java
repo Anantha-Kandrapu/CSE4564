@@ -35,7 +35,6 @@ public class RightPanel extends JPanel implements Observable {
     private RightPanel() {
     }
 
-    JPanel jPanel;
 
     public static void getRightPanel() {
         if (rightPanel == null) {
@@ -71,8 +70,9 @@ public class RightPanel extends JPanel implements Observable {
         System.out.println();
     }
 
-    // Tracks the number of clicks on classes.
-
+    /**
+     *  Tracks the number of clicks on classes.
+    */
     public void boxClickTracker(Box box) {
         mouseTracker.add(box);
         if (mouseTracker.size() == 2) {
@@ -104,7 +104,8 @@ public class RightPanel extends JPanel implements Observable {
                                             "Composition", 
                                             "Association"
                                         };
-        response = JOptionPane.showOptionDialog(null, "Select Relation", "Relation",
+        response = JOptionPane.showOptionDialog(null,
+                "Select Relation", "Relation",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
 
@@ -128,20 +129,27 @@ public class RightPanel extends JPanel implements Observable {
         cChain.setChainNext(aChain);
         iChain.createArrow(response, b1, b2);
     }
-
-    public void updateRightPanel() {
+    public void updateBoxes() {
         rightPanel.removeAll();
+
         for (int i = 0; i < boxes.size(); ++i) {
             rightPanel.add(boxes.get(i));
         }
+    }
 
-        for (int i = 0; i < relationShips.size(); ++i) {
-            Box b1 = relationShips.get(i).getBox1();
-            Box b2 = relationShips.get(i).getBox2();
-            Arrow arrow = relationShips.get(i).arrow;
-            arrow.drawLine(b1.getX(), b1.getY(), b2.getX(), b2.getY());
+        public void updateRelationships(){
+
+            for (int i = 0; i < relationShips.size(); ++i) {
+                Box b1 = relationShips.get(i).getBox1();
+                Box b2 = relationShips.get(i).getBox2();
+                Arrow arrow = relationShips.get(i).arrow;
+                arrow.drawLine(b1.getX(), b1.getY(), b2.getX(), b2.getY());
+            }
         }
 
+    public void updateRightPanel() {
+        updateBoxes();
+        updateRelationships();
         rightPanel.sendUpdate();
     }
 

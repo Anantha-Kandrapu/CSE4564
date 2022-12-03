@@ -27,9 +27,6 @@ public class Blackboard {
     public void boxcoord(int x, int y){
         xCoord.add(x);
         yCoord.add(y);
-        for(Integer i: xCoord) {
-            System.out.println(i);
-        }
     }
 
 }

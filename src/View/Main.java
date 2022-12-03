@@ -1,3 +1,5 @@
+package View;
+
 import View.*;
 import Model.*;
 import javax.swing.*;
@@ -73,22 +75,21 @@ public class Main extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String fileName = JOptionPane.showInputDialog(frame,
                         "Please enter the filename.", null);
+
                 FileHandle fileHandle = new FileHandle(fileName);
                 fileHandle.read();
+
             }
         });
 
-//        JScrollPane panelPane = new JScrollPane(lp);
-//        panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         newButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp.removeAll();
-                lp.repaint();
-                statusPanel.selectAll();
-                statusPanel.replaceSelection(" ");
-                RightPanel.rightPanel.removeAll();
-                RightPanel.rightPanel.repaint();
+                RightPanel.boxes.clear();
+                RightPanel.relationShips.clear();
+                statusPanel.setPrevBoxLength(0);
+                statusPanel.setPrevRelationLength(0);
+                RightPanel.rightPanel.updateRightPanel();
             }
         });
         JSplitPane hSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, lp, RightPanel.rightPanel);
@@ -102,4 +103,5 @@ public class Main extends JFrame {
         frame.setVisible(true);
 
     }
+
 }

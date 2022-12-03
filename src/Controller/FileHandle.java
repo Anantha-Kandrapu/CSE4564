@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-/*
+/**
  * This class is responsible for the save and load feature. 
  * The save feature asks the user to input a file name to save the file locally.
  * The load feature asks the user to input an existing file name, and renders the
